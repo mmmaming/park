@@ -2,12 +2,12 @@ package com.company;
 import java.util.Arrays;
 
 public class ParkLot {
-    // TODO
-    修改停车方式，可以返回个类似token，方便取车用。
     private Car[] parkList = new Car[10000];
-    public void park(Car car) {
+    public int park(Car car) {
         int emptyIndex = getEmptyStall();
         parkList[emptyIndex] = car;
+
+        return emptyIndex;
     }
 
     private int getEmptyStall() {
@@ -21,13 +21,10 @@ public class ParkLot {
         return index;
     }
     
-    public void getCar(Car car) {
-        int index = Arrays.asList(parkList).indexOf(car);
+    public void getCar(int index) {
+        Car car = Arrays.asList(parkList).get(index);
         parkList[index] = null;
-    }
-
-    public void setParkList(Car[] parkList) {
-        this.parkList = parkList;
+        System.out.println(car + "go away");
     }
 
     public Car[] getParkList() {

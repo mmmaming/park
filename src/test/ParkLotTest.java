@@ -20,8 +20,8 @@ public class ParkLotTest {
     public void should_get_an_empty_stall_when_car_go_away() {
         ParkLot parkLot = new ParkLot();
         Car car1 = new Car();
-        parkLot.park(car1);
-        parkLot.getCar(car1);
+        int car1Index = parkLot.park(car1);
+        parkLot.getCar(car1Index);
         assertNull(parkLot.getParkList()[0]);
     }
 
@@ -44,9 +44,9 @@ public class ParkLotTest {
         Car car2 = new Car();
         Car car3 = new Car();
 
-        parkLot.park(car1);
+        int car1Index = parkLot.park(car1);
         parkLot.park(car2);
-        parkLot.getCar(car1);
+        parkLot.getCar(car1Index);
         parkLot.park(car3);
         assertEquals(parkLot.getParkList()[0], car3);
 

@@ -2,7 +2,8 @@ package com.company;
 import java.util.Arrays;
 
 public class ParkLot {
-
+    // TODO
+    修改停车方式，可以返回个类似token，方便取车用。
     private Car[] parkList = new Car[10000];
     public void park(Car car) {
         int emptyIndex = getEmptyStall();

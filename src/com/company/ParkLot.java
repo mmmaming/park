@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class ParkLot {
 
-    public Car[] parkList = new Car[10000];
+    private Car[] parkList = new Car[10000];
     public void park(Car car) {
         int emptyIndex = getEmptyStall();
         parkList[emptyIndex] = car;
@@ -23,6 +23,13 @@ public class ParkLot {
     public void getCar(Car car) {
         int index = Arrays.asList(parkList).indexOf(car);
         parkList[index] = null;
-        System.out.println(car.getDriver() + "的车开走了");
+    }
+
+    public void setParkList(Car[] parkList) {
+        this.parkList = parkList;
+    }
+
+    public Car[] getParkList() {
+        return parkList;
     }
 }

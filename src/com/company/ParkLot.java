@@ -27,6 +27,7 @@ public class ParkLot {
     }
     
     public Car getCar(int index) {
+//        Car car1 = parkList[index];
         Car car = Arrays.asList(parkList).get(index);
         parkList[index] = null;
         System.out.println(car + "go away");

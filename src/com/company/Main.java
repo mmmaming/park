@@ -10,6 +10,6 @@ public class Main {
 
         parkLot.park(car1);
         parkLot.park(car2);
-        parkLot.getCar(car1);
+//        parkLot.getCar(car1);
     }
 }

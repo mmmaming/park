@@ -1,8 +1,13 @@
 package com.company;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 
 public class ParkLot {
-    private Car[] parkList = new Car[10000];
+    private final Car[] parkList = new Car[10000];
+
     public int park(Car car) {
         int emptyIndex = getEmptyStall();
         parkList[emptyIndex] = car;
@@ -21,10 +26,11 @@ public class ParkLot {
         return index;
     }
     
-    public void getCar(int index) {
+    public Car getCar(int index) {
         Car car = Arrays.asList(parkList).get(index);
         parkList[index] = null;
         System.out.println(car + "go away");
+        return car;
     }
 
     public Car[] getParkList() {

@@ -49,7 +49,6 @@ public class ParkLotTest {
         parkLot.getCar(car1Index);
         parkLot.park(car3);
         assertEquals(parkLot.getParkList()[0], car3);
-
     }
 
 

@@ -28,5 +28,5 @@ public class ParkingBoy {
         System.out.println(parkLot.getParkList()[carIndex]);
         return parkLot.getParkList()[carIndex];
     }
-
 }
+

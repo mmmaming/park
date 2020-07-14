@@ -101,4 +101,4 @@ public class ParkLotTest {
         assertEquals(car5, car5Copy);
         assertEquals(car6, car6Copy);
     }
-}
+}   

@@ -2,31 +2,41 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ParkingBoy {
-    private final ArrayList<ParkLot> parkLotList = new ArrayList<ParkLot>();
-
+public class ParkingBoy extends ParkingPerson {
+    // TODO 子类实现父类构造函数方式
     public ParkingBoy(ParkLot... parkLots) {
-        this.parkLotList.addAll(Arrays.asList(parkLots));
+        super(parkLots);
     }
 
+    public String park(Car car, Strategy parkStrategy) {
+        // TODO 调用父类中的实例变量的方式是否正确
+        int maxNumberOfVacancy = super.getParkLotList().get(0).getNumberOfVacancy();
+        double maxNumberOfPrecentage = super.getParkLotList().get(0).getPrecentageOfVacancy();;
+        int maxNumberOfVacancyParkLotIndex = 0;
+        int maxNumberOfPrecentageParkLotIndex = 0;
+        // TODO 怎么查找数组中的最大最小值
+        for(int i = 0; i < super.getParkLotList().size(); i++) {
+            ParkLot currentParkLot = super.getParkLotList().get(i);
+            if (currentParkLot.getNumberOfVacancy() > maxNumberOfVacancy) {
+                maxNumberOfVacancy = currentParkLot.getNumberOfVacancy();
+                maxNumberOfVacancyParkLotIndex = i;
+            }
+            if (currentParkLot.getPrecentageOfVacancy() > maxNumberOfPrecentage) {
+                maxNumberOfPrecentage = currentParkLot.getPrecentageOfVacancy();
+                maxNumberOfPrecentageParkLotIndex = i;
+            }
+        }
+        if (parkStrategy == Strategy.NUMBER) {
+            int parkLotIndex = maxNumberOfVacancyParkLotIndex;
+            int carIndex = super.getParkLotList().get(parkLotIndex).park(car);
+            return parkLotIndex + "-" + carIndex;
+        } else {
+            int parkLotIndex = maxNumberOfPrecentageParkLotIndex;
+            int carIndex = super.getParkLotList().get(parkLotIndex).park(car);
+            return parkLotIndex + "-" + carIndex;
 
-    public void registerParkLot(ParkLot parkLot) {
-        this.parkLotList.add(parkLot);
+        }
     }
 
-    public String park(Car car) {
-        int length = this.parkLotList.size();
-        int parkLotIndex = (int)Math.floor(Math.random() * length);
-        int carIndex = parkLotList.get(parkLotIndex).park(car);
-        return parkLotIndex + "-" + carIndex;
-    }
-
-    public Car getCar(String key) {
-        int parkLotIndex = Integer.parseInt(key.split("-")[0]);
-        int carIndex = Integer.parseInt(key.split("-")[1]);
-        ParkLot parkLot = this.parkLotList.get(parkLotIndex);
-        System.out.println(parkLot.getParkList()[carIndex]);
-        return parkLot.getParkList()[carIndex];
-    }
 }
 

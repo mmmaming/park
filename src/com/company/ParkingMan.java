@@ -1,13 +1,16 @@
 package com.company;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-public class ParkingBoy extends ParkingPerson {
-    public ParkingBoy(ParkLot... parkLots) {
+public class ParkingMan extends ParkingPerson {
+    public ParkingMan(ParkLot... parkLots) {
         super(parkLots);
     }
+    // TODO 是否可以通过构造函数传入strategy?
+    Strategy parkingWay;
+    public void setParkingStrategy(Strategy strategy) {
+        this.parkingWay = strategy;
+    }
 
-    public String park(Car car, Strategy parkStrategy) {
+    public String park(Car car) {
         int maxNumberOfVacancy = super.getParkLotList().get(0).getNumberOfVacancy();
         double maxNumberOfPrecentage = super.getParkLotList().get(0).getPrecentageOfVacancy();;
         int maxNumberOfVacancyParkLotIndex = 0;
@@ -23,7 +26,7 @@ public class ParkingBoy extends ParkingPerson {
                 maxNumberOfPrecentageParkLotIndex = i;
             }
         }
-        if (parkStrategy == Strategy.NUMBER) {
+        if (this.parkingWay == Strategy.NUMBER) {
             int parkLotIndex = maxNumberOfVacancyParkLotIndex;
             int carIndex = super.getParkLotList().get(parkLotIndex).park(car);
             return parkLotIndex + "-" + carIndex;
@@ -34,6 +37,4 @@ public class ParkingBoy extends ParkingPerson {
 
         }
     }
-
 }
-

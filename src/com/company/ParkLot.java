@@ -4,13 +4,9 @@ import java.util.Arrays;
 
 public class ParkLot {
     public ParkLot(int size) {
-        // TODO java中有没有类似JS中对象的东西，可以记录每个停车场的空位数和空位率
-        //  { parkLot1: {num: 20, precentage: 22%}, parkLot2: {num: 10, precentage: 97%} }
         this.parkList = new Car[size];
         this.stallSize = size;
-        // TODO 如何查找数组中null值的数量
         this.numberOfVacancy = size;
-        // TODO 是否可以通过改变numberOfVacancy的值自动计算precentageOfVacancy;
         this.precentageOfVacancy = this.numberOfVacancy / size;
     }
     private int numberOfVacancy;

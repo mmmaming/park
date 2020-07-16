@@ -7,6 +7,8 @@ import com.company.ParkLot;
 import com.company.ParkingBoy;
 import com.company.Strategy;
 import org.junit.Test;
+import com.company.CleverParkingBoy;
+import com.company.SmartParkingBoy;
 
 public class ParkLotTest {
 
@@ -104,54 +106,45 @@ public class ParkLotTest {
     }
 
     @Test
-    public void should_park_by_number_strategy() {
-        ParkLot parkLot = new ParkLot(20);
+    public void should_park_by_number_of_vacancy_way() {
+        ParkLot parkLot = new ParkLot(22);
         ParkLot parkLot1 = new ParkLot(20);
-        ParkingBoy pb = new ParkingBoy(parkLot, parkLot1);
+        CleverParkingBoy cleverParkingBoy = new CleverParkingBoy(parkLot, parkLot1);
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();
         Car car4 = new Car();
         Car car5 = new Car();
-        Car car6 = new Car();
-        String key1 = pb.park(car1, Strategy.NUMBER);
-        String key2 = pb.park(car2, Strategy.NUMBER);
-        String key3 = pb.park(car3, Strategy.NUMBER);
-        String key4 = pb.park(car4, Strategy.NUMBER);
-        String key5 = pb.park(car5, Strategy.NUMBER);
-        String key6 = pb.park(car6, Strategy.NUMBER);
-        System.out.println("Number of vacangy");
-        System.out.println(key1);
-        System.out.println(key2);
-        System.out.println(key3);
-        System.out.println(key4);
-        System.out.println(key5);
-        System.out.println(key6);
+        cleverParkingBoy.park(car1);
+        cleverParkingBoy.park(car2);
+        cleverParkingBoy.park(car3);
+        assertEquals(cleverParkingBoy.getParkLotList().get(0).getParkList()[0], car1);
+        assertEquals(cleverParkingBoy.getParkLotList().get(0).getParkList()[1], car2);
+        assertEquals(cleverParkingBoy.getParkLotList().get(0).getParkList()[2], car3);
+        cleverParkingBoy.park(car4);
+        assertEquals(cleverParkingBoy.getParkLotList().get(1).getParkList()[0], car4);
+        cleverParkingBoy.park(car5);
+        assertEquals(cleverParkingBoy.getParkLotList().get(0).getParkList()[3], car5);
     }
-
     @Test
-    public void should_park_by_percentage_strategy() {
-        ParkLot parkLot = new ParkLot(30);
+    public void should_park_by_precentage_of_vacancy_way() {
+        ParkLot parkLot = new ParkLot(40);
         ParkLot parkLot1 = new ParkLot(20);
-        ParkingBoy pb = new ParkingBoy(parkLot, parkLot1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkLot, parkLot1);
         Car car1 = new Car();
         Car car2 = new Car();
         Car car3 = new Car();
         Car car4 = new Car();
         Car car5 = new Car();
-        Car car6 = new Car();
-        String key1 = pb.park(car1, Strategy.PERCENTAGE);
-        String key2 = pb.park(car2, Strategy.PERCENTAGE);
-        String key3 = pb.park(car3, Strategy.PERCENTAGE);
-        String key4 = pb.park(car4, Strategy.PERCENTAGE);
-        String key5 = pb.park(car5, Strategy.PERCENTAGE);
-        String key6 = pb.park(car6, Strategy.PERCENTAGE);
-        System.out.println("precentage of vacangy");
-        System.out.println(key1);
-        System.out.println(key2);
-        System.out.println(key3);
-        System.out.println(key4);
-        System.out.println(key5);
-        System.out.println(key6);
+        smartParkingBoy.park(car1);
+        smartParkingBoy.park(car2);
+        smartParkingBoy.park(car3);
+        assertEquals(smartParkingBoy.getParkLotList().get(0).getParkList()[0], car1);
+        assertEquals(smartParkingBoy.getParkLotList().get(1).getParkList()[0], car2);
+        assertEquals(smartParkingBoy.getParkLotList().get(0).getParkList()[1], car3);
+        smartParkingBoy.park(car4);
+        assertEquals(smartParkingBoy.getParkLotList().get(0).getParkList()[2], car4);
+        smartParkingBoy.park(car5);
+        assertEquals(smartParkingBoy.getParkLotList().get(1).getParkList()[1], car5);
     }
 }   
